@@ -1,6 +1,6 @@
-import './App.css';
-import React, { useState } from 'react';
 
+import React, { useState } from 'react';
+import './App.css';
 function App() {
   const [inputItem, setInputItem] = useState([]);
   const [items, setItems] = useState([]);
@@ -31,6 +31,8 @@ function App() {
         <div className="add-tasks">
           <label for="task">Add Task:</label>
           <input type="text" id="task" value ={inputItem} onChange={(e) => setInputItem(e.target.value)}/>
+          <label for="dueDate">Due Date:</label>
+          <input type="date" id="dueDate" onChange={(e) => setInputItem(e.target.value)} />
           <button type='submit'onClick={handleAddItem}>Submit</button>
         </div>
         <div className="to-do-list">
@@ -41,7 +43,8 @@ function App() {
                 <input type="checkbox" 
                 checked={item.isChecked}
                 onChange={() => handleCheck(item.id)} />
-                <span className={item.isChecked ? 'crossed' : ''}>{item.name}</span>
+                <span className={item.isChecked ? 'crossed' : ''}>{item.name} {item.dueDate}</span>
+                
                 <button type='button' onClick={()=> removeElement(item.id)}>X</button>
                 </li>
             )
